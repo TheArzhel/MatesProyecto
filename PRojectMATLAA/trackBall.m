@@ -1111,5 +1111,5 @@ RotMat=axisangle2matrix(Axis,Angle);
     set(handles.RotMat_Pos3_3,'String',RotMat(3,3));
     
     last_cube = GetLastCube();
-    handles.Cube = RedrawCube(RotMat_Pos,last_cube);
+    handles.Cube = RedrawCube(RotMat,last_cube);
     Set_last_cube(handles.Cube);
