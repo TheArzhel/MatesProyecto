@@ -802,7 +802,7 @@ Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
     set(handles.Roll,'String',Roll);
     set(handles.Yaw,'String',Yaw);
 
-    %Write rotation vector %% SEE ORIGINAL, PARAMETER REPEAT
+    %Write rotation vector 
     [Euler_Axis,Euler_Angle]=RotMatToEulerAxis_Angle(Rot_Mat);
      Rotation_Vector = Obt_RotVec(Euler_Axis,Euler_Angle);
     set(handles.X,'String',Rotation_Vector(1));
@@ -825,7 +825,7 @@ Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
     set(handles.RotMat_Pos3_2,'String',Rot_Mat(3,2));
     set(handles.RotMat_Pos3_3,'String',Rot_Mat(3,3));
      
-   last_cube = GetLastCube();
+    last_cube = GetLastCube();
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
     Set_last_cube(handles.Cube);
 
