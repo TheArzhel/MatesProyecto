@@ -1,4 +1,4 @@
-function RotMat=EulerAnglesToRotMat(Pitch,Roll,Yaw)
+function RotMat=EulerAnglesToRotMat(Roll,Pitch,Yaw)
 %INPUT:Pitch,Roll,Yaw
 %OUTPUT:RotMat
 

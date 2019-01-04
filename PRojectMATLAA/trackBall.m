@@ -761,7 +761,7 @@ Pitch = str2double(get(handles.Pitch,'String'));
 Roll = str2double(get(handles.Roll,'String'));
 Yaw = str2double(get(handles.Yaw,'String'));
 
-Rot_Mat=EulerAnglesToRotMat(Pitch,Roll,Yaw);
+Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
 %---------------------------Do All Again------------------------
   
     if(isempty(GetLastQuaternion()))
@@ -797,7 +797,7 @@ Rot_Mat=EulerAnglesToRotMat(Pitch,Roll,Yaw);
     set(handles.Euler_Angle,'String',Euler_Angle);
    
     %Write Euler Angles
-    [Pitch,Roll,Yaw]=RotMatToEulerAngles(Rot_Mat);
+    [Roll,Pitch,Yaw]=RotMatToEulerAngles(Rot_Mat);
     set(handles.Pitch,'String',Pitch);
     set(handles.Roll,'String',Roll);
     set(handles.Yaw,'String',Yaw);
@@ -824,9 +824,6 @@ Rot_Mat=EulerAnglesToRotMat(Pitch,Roll,Yaw);
     set(handles.RotMat_Pos3_1,'String',Rot_Mat(3,1));
     set(handles.RotMat_Pos3_2,'String',Rot_Mat(3,2));
     set(handles.RotMat_Pos3_3,'String',Rot_Mat(3,3));
-    %_________________
-    
-    %% see original code
      
    last_cube = GetLastCube();
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
