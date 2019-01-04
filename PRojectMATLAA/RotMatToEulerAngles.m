@@ -1,4 +1,4 @@
-function [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat)
+function [Roll,Pitch,Yaw]=RotMatToEulerAngles(RotMat)
 %INPUT:RotMat
 %OUTPUT:Pitch,Roll,Yaw
 
