@@ -826,9 +826,7 @@ Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
     set(handles.RotMat_Pos3_3,'String',Rot_Mat(3,3));
      
 
-    last_cube = GetLastCube();
-
-
+    last_cube = GetGlobal_Cube();
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
     Global_Cube(handles.Cube);
 
