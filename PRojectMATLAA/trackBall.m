@@ -121,9 +121,9 @@ if xmouse > xlim(1) && xmouse < xlim(2) && ymouse > ylim(1) && ymouse < ylim(2)
     
 Init_Vec=Get_init_vec();
 Axis=-cross(RotVec(3,xmouse,ymouse), Init_Vec);
-a=0.2;
-AUX=(norm(RotVec(3,xmouse,ymouse))*norm(Init_Vec))*a;
-Angle = acosd((RotVec(3,xmouse,ymouse)'*Init_Vec)/AUX);
+
+
+Angle = acosd((RotVec(3,xmouse,ymouse)'*Init_Vec)/(norm(RotVec(3,xmouse,ymouse))*norm(Init_Vec)))*0.2;
 
 RotMat=axisangle2matrix(Axis,Angle);
 
@@ -132,22 +132,23 @@ RotMat=axisangle2matrix(Axis,Angle);
         Quat0 = [0;0;0;0];
     else
          Quat0 = GetLastQuaternion();
-    end
-    set(handles.Quat0_0,'String', Quat0(1,1));
-    set(handles.Quat0_1,'String', Quat0(2,1));
-    set(handles.Quat0_2,'String', Quat0(3,1));
-    set(handles.Quat0_3,'String', Quat0(4,1));
+     end
     
-    Quat2 = TwoVec_To_Quat(Init_Vec,RotVec(3,xmouse,ymouse));
-    set(handles.Quat2_0,'String',Quat2(1,1));
-    set(handles.Quat2_1,'String',Quat2(2,1));
-    set(handles.Quat2_2,'String',Quat2(3,1));
-    set(handles.Quat2_3,'String',Quat2(4,1));
+    set(handles.Quat0_0,'String',Quat0(1,1));
+    set(handles.Quat0_1,'String',Quat0(2,1));
+    set(handles.Quat0_2,'String',Quat0(3,1));
+    set(handles.Quat0_3,'String',Quat0(4,1));
+    
+   Quat1 = TwoVec_To_Quat(Init_Vec,RotVec(3,xmouse,ymouse));
+    set(handles.Quat1_0,'String',Quat1(1,1));
+    set(handles.Quat1_1,'String',Quat1(2,1));
+    set(handles.Quat1_2,'String',Quat1(3,1));
+    set(handles.Quat1_3,'String',Quat1(4,1));
 
-      Set_last_quaternion(Quat2);
+      Set_last_quaternion(Quat1);
     
     
-    Quat_Product=quatmult(Quat0,Quat2);
+    Quat_Product=quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
     set(handles.Quat_Product_1,'String',Quat_Product(2,1));
     set(handles.Quat_Product_2,'String',Quat_Product(3,1));
