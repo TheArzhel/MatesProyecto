@@ -22,7 +22,7 @@ function varargout = trackBall(varargin)
 
 % Edit the above text to modify the response to help trackBall
 
-% Last Modified by GUIDE v2.5 04-Jan-2019 21:23:11
+% Last Modified by GUIDE v2.5 04-Jan-2019 22:47:39
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -750,9 +750,9 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-% --- Executes on button press in pusheulerAngles.
-function seteulerAngles_Callback(hObject, eventdata, handles)
-% hObject    handle to pusheulerAngles (see GCBO)
+% --- Executes on button press in seteulerangles.
+function setEulerAngles_Callback(hObject, eventdata, handles)
+% hObject    handle to seteulerangles (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Set_last_cube(handles.Cube);
@@ -894,9 +894,9 @@ function axes1_ButtonDownFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pusheulerAxis.
-function seteulerAxis_Callback(hObject, eventdata, handles)
-% hObject    handle to pusheulerAxis (see GCBO)
+% --- Executes on button press in seteuleraxis.
+function seteuleraxis_Callback(hObject, eventdata, handles)
+% hObject    handle to seteuleraxis (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Set_last_cube(handles.Cube);
@@ -978,9 +978,9 @@ Rot_Mat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
     Set_last_cube(handles.Cube);
 
-% --- Executes on button press in pushquaternions.
+% --- Executes on button press in setquaternions.
 function setquaternions_Callback(hObject, eventdata, handles)
-% hObject    handle to pushquaternions (see GCBO)
+% hObject    handle to setquaternions (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Set_last_cube(handles.Cube);
@@ -1003,7 +1003,7 @@ Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
 
   
     %Write Euler Angles
-    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
+    [Pitch,Roll,Yaw]=RotMatToEulerAngles(Rot_Mat);
     set(handles.Pitch,'String',Pitch);
     set(handles.Roll,'String',Roll);
     set(handles.Yaw,'String',Yaw);    
@@ -1059,9 +1059,9 @@ Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
     Set_last_cube(handles.Cube);
 
 
-% --- Executes on button press in pushrotvec.
+% --- Executes on button press in setrotvec.
 function setrotvec_Callback(hObject, eventdata, handles)
-% hObject    handle to pushrotvec (see GCBO)
+% hObject    handle to setrotvec (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Set_last_cube(handles.Cube);
@@ -1081,7 +1081,7 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
 %---------------------------Do All Again------------------------
   
   %Write Euler Angles
-    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
+    [Pitch,Roll,Yaw]=RotMatToEulerAngles(Rot_Mat);
     set(handles.Pitch,'String',Pitch);
     set(handles.Roll,'String',Roll);
     set(handles.Yaw,'String',Yaw); 
@@ -1113,7 +1113,7 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
     set(handles.Quat_Product_3,'String',Quat_Product(4,1));
 
     %Write Euler axis & angle
-    [Euler_Axis,Euler_Angle]=RotMatToEulerAngles(RotMat);
+    [Euler_Axis,Euler_Angle]=RotMatToEulerAngles(Rot_Mat);
     set(handles.Euler_AxisX,'String',Euler_Axis(1,1));
     set(handles.Euler_AxisY,'String',Euler_Axis(2,1));
     set(handles.Euler_AxisZ,'String',Euler_Axis(3,1));
