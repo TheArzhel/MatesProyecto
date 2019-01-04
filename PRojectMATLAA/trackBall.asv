@@ -1001,27 +1001,35 @@ Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
     set(handles.Roll,'String',Roll);
     set(handles.Yaw,'String',Yaw);    
 
-  
-    %Write Euler Angles
-    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
-    set(handles.Pitch,'String',Pitch);
-    set(handles.Roll,'String',Roll);
-    set(handles.Yaw,'String',Yaw);    
-
     %Write quaternions
     if(isempty(GetLastQuaternion()))
         Quat0 = [0;0;0;0];
     else
-         Quat0 = GetLastQuaternion();
+        Quat0 = GetLastQuaternion();
     end
-     Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
-    Set_last_quaternion( Quat1);
-    Quat_Product = quatmult( Quat0, Quat1);
+    
+    Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
+     Set_last_quaternion(Quat1);
+    qk = q_product(q0,q1);
+    
+    set(handles.Quat0_0,'String',Quat0(1,1));
+    set(handles.Quat0_1,'String',Quat0(2,1));
+    set(handles.Quat0_2,'String',Quat0(3,1));
+    set(handles.Quat0_3,'String',Quat0(4,1));
+
+    Quat1 = 
+    set(handles.Quat1_0,'String',Quat1(1,1));
+    set(handles.Quat1_1,'String',Quat1(2,1));
+    set(handles.Quat1_2,'String',Quat1(3,1));
+    set(handles.Quat1_3,'String',Quat1(4,1));
+
+    Set_last_quaternion(Quat1);
+    
+    Quat_Product = quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
     set(handles.Quat_Product_1,'String',Quat_Product(2,1));
     set(handles.Quat_Product_2,'String',Quat_Product(3,1));
-    set(handles.Quat_Product_3,'String',Quat_Product(4,1))
-
+    set(handles.Quat_Product_3,'String',Quat_Product(4,1));
 
     %Write Euler Axis & Angle
     [Euler_Axis,Euler_Angle]=RotMatToEulerAxis_Angle(Rot_Mat);
@@ -1080,11 +1088,11 @@ Axis = Rotation_Vector/norm(Rotation_Vector);
 Rot_Mat=axisangle2matrix(Axis,Angle);
 %---------------------------Do All Again------------------------
   
-  %Write Euler Angles
-    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
+    %Write Euler Angles
+    [Pitch,Roll,Yaw]=RotMatToEulerAngles(Rot_Mat);
     set(handles.Pitch,'String',Pitch);
     set(handles.Roll,'String',Roll);
-    set(handles.Yaw,'String',Yaw); 
+    set(handles.Yaw,'String',Yaw);    
 
     %Write quaternions
     if(isempty(GetLastQuaternion()))
@@ -1092,27 +1100,27 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
     else
         Quat0 = GetLastQuaternion();
     end
-    set(handles.Quat0_0,'String', Quat0(1,1));
-    set(handles.Quat0_1,'String', Quat0(2,1));
-    set(handles.Quat0_2,'String', Quat0(3,1));
-    set(handles.Quat0_3,'String', Quat0(4,1));
+    set(handles.Quat0_0,'String',Quat0(1,1));
+    set(handles.Quat0_1,'String',Quat0(2,1));
+    set(handles.Quat0_2,'String',Quat0(3,1));
+    set(handles.Quat0_3,'String',Quat0(4,1));
 
-    Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
-    set(handles.Quat1_0,'String', Quat1(1,1));
-    set(handles.Quat1_1,'String', Quat1(2,1));
-    set(handles.Quat1_2,'String', Quat1(3,1));
-    set(handles.Quat1_3,'String', Quat1(4,1));
+    Quat1 = TwoVec_To_Quat(Init_Vector, RotVec(3,xmouse,ymouse));
+    set(handles.Quat1_0,'String',Quat1(1,1));
+    set(handles.Quat1_1,'String',Quat1(2,1));
+    set(handles.Quat1_2,'String',Quat1(3,1));
+    set(handles.Quat1_3,'String',Quat1(4,1));
 
     Set_last_quaternion(Quat1);
     
-    Quat_Product = quatmult( Quat0, Quat1);
+    Quat_Product = quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
     set(handles.Quat_Product_1,'String',Quat_Product(2,1));
     set(handles.Quat_Product_2,'String',Quat_Product(3,1));
     set(handles.Quat_Product_3,'String',Quat_Product(4,1));
 
-    %Write Euler axis & angle
-    [Euler_Axis,Euler_Angle]=RotMatToEulerAngles(RotMat);
+    %Write Euler Axis & Angle
+    [Euler_Axis,Euler_Angle]=RotMatToEulerAxis_Angle(Rot_Mat);
     set(handles.Euler_AxisX,'String',Euler_Axis(1,1));
     set(handles.Euler_AxisY,'String',Euler_Axis(2,1));
     set(handles.Euler_AxisZ,'String',Euler_Axis(3,1));
