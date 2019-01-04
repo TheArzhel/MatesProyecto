@@ -1,4 +1,4 @@
-function [Pitch,Roll,Yaw ] = Quat_To_EulerAngles( quat )
+function [Pitch,Roll,Yaw] = Quat_To_EulerAngles( quat )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 q_0 = quat(1);

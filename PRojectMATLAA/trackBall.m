@@ -990,8 +990,9 @@ Quat1(2,1) = str2double(get(handles.Quat1_1,'String'));
 Quat1(3,1) = str2double(get(handles.Quat1_2,'String'));
 Quat1(4,1) = str2double(get(handles.Quat1_3,'String'));
 
-[Pitch_AUX,Roll_AUX,Yaw_AUX]=Quat_To_EulerAngles(Quat1);
-Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
+[Rot_Mat]=QuatToRotMat(Quat1);
+%Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
+
 %---------------------------Do All Again------------------------
    
 
