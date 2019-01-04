@@ -96,7 +96,7 @@ xmouse = mousepos(1,1);
 ymouse = mousepos(1,2);
 
 if xmouse > xlim(1) && xmouse < xlim(2) && ymouse > ylim(1) && ymouse < ylim(2)
-    Set_init_vec(RotVec(3,xmouse,ymouse));
+    Global_Vec(RotVec(3,xmouse,ymouse));
     set(handles.figure1,'WindowButtonMotionFcn',{@my_MouseMoveFcn,hObject});
 end
 guidata(hObject,handles)
@@ -117,17 +117,17 @@ ymouse = mousepos(1,2);
 
 if xmouse > xlim(1) && xmouse < xlim(2) && ymouse > ylim(1) && ymouse < ylim(2)
     
-    Init_Vector = Get_init_vec();
+    Init_Vector = GetGlobal_Vec();
     Axis = -cross(RotVec(3,xmouse,ymouse), Init_Vector);
     Angle = acosd((RotVec(3,xmouse,ymouse)'*Init_Vector)/(norm(RotVec(3,xmouse,ymouse))*norm(Init_Vector)))*0.2;
     
     Rot_Mat = axisangle2matrix(Axis, Angle);
     
     %Write quaternions
-    if(isempty(GetLastQuaternion()))
+    if(isempty(GetGlobal_Quat()))
         Quat0 = [0;0;0;0];
     else
-        Quat0 = GetLastQuaternion();
+        Quat0 = GetGlobal_Quat();
     end
     set(handles.Quat0_0,'String',Quat0(1,1));
     set(handles.Quat0_1,'String',Quat0(2,1));
@@ -140,7 +140,7 @@ if xmouse > xlim(1) && xmouse < xlim(2) && ymouse > ylim(1) && ymouse < ylim(2)
     set(handles.Quat1_2,'String',Quat1(3,1));
     set(handles.Quat1_3,'String',Quat1(4,1));
 
-    Set_last_quaternion(Quat1);
+    Global_Quat(Quat1);
     
     Quat_Product = quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
@@ -171,7 +171,7 @@ if xmouse > xlim(1) && xmouse < xlim(2) && ymouse > ylim(1) && ymouse < ylim(2)
 
     
     %Write r_mat 
-    Set_rotation_matrix(Rot_Mat);
+    Global_RotMat(Rot_Mat);
 
     set(handles.RotMat_Pos1_1,'String',Rot_Mat(1,1));
     set(handles.RotMat_Pos1_2,'String',Rot_Mat(1,2));
@@ -277,35 +277,35 @@ end
 
 %% new stuff
 
-function Set_init_vec(v)
+function Global_Vec(v)
 global initial_vector;
 initial_vector = v;
 
-function Set_rotation_matrix(r_mat)
+function Global_RotMat(r_mat)
 global rotation_mat;
 rotation_mat = r_mat;
 
-function Set_last_quaternion(l_q)
+function Global_Quat(l_q)
 global last_quat;
 last_quat = l_q;
 
-function Set_last_cube(l_c)
+function Global_Cube(l_c)
 global last_cube;
 last_cube = l_c;
 
-function vec = Get_init_vec();
+function vec = GetGlobal_Vec();
 global initial_vector;
 vec = initial_vector;
 
-function mat = Get_rotation_matrix();
+function mat = GetGlobal_RotMat();
 global rotation_mat;
 mat = rotation_mat;
 
-function quat = GetLastQuaternion();
+function quat = GetGlobal_Quat();
 global last_quat;
 quat = last_quat;
 
-function cube = GetLastCube();
+function cube =GetGlobal_Cube();
 global last_cube;
 cube = last_cube;
 
@@ -755,7 +755,7 @@ function setEulerAngles_Callback(hObject, eventdata, handles)
 % hObject    handle to seteulerangles (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Set_last_cube(handles.Cube);
+Global_Cube(handles.Cube);
 
 Pitch = str2double(get(handles.Pitch,'String'));
 Roll = str2double(get(handles.Roll,'String'));
@@ -764,10 +764,10 @@ Yaw = str2double(get(handles.Yaw,'String'));
 Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
 %---------------------------Do All Again------------------------
   
-    if(isempty(GetLastQuaternion()))
+    if(isempty(GetGlobal_Quat()))
         Quat0 = [0;0;0;0];
     else
-        Quat0 = GetLastQuaternion();
+        Quat0 = GetGlobal_Quat();
     end
     set(handles.Quat0_0,'String',Quat0(1,1));
     set(handles.Quat0_1,'String',Quat0(2,1));
@@ -780,7 +780,7 @@ Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
     set(handles.Quat1_2,'String',Quat1(3,1));
     set(handles.Quat1_3,'String',Quat1(4,1));
 
-    Set_last_quaternion(Quat1);
+    Global_Quat(Quat1);
     
     Quat_Product = quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
@@ -811,7 +811,7 @@ Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
 
     
     %Write r_mat 
-    Set_rotation_matrix(Rot_Mat);
+    Global_RotMat(Rot_Mat);
 
     set(handles.RotMat_Pos1_1,'String',Rot_Mat(1,1));
     set(handles.RotMat_Pos1_2,'String',Rot_Mat(1,2));
@@ -825,9 +825,12 @@ Rot_Mat=EulerAnglesToRotMat(Roll,Pitch,Yaw);
     set(handles.RotMat_Pos3_2,'String',Rot_Mat(3,2));
     set(handles.RotMat_Pos3_3,'String',Rot_Mat(3,3));
      
+
     last_cube = GetLastCube();
+
+
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
-    Set_last_cube(handles.Cube);
+    Global_Cube(handles.Cube);
 
 % --- Executes on button press in reset.
 function reset_Callback(hObject, eventdata, handles)
@@ -845,7 +848,7 @@ set(handles.Quat1_1,'String',0);
 set(handles.Quat1_2,'String',0);
 set(handles.Quat1_3,'String',0);
 
-Set_last_quaternion([0;0;0;0]);
+Global_Quat([0;0;0;0]);
 
 set(handles.Quat_Product_0,'String',0);
 set(handles.Quat_Product_1,'String',0);
@@ -897,7 +900,7 @@ function seteuleraxis_Callback(hObject, eventdata, handles)
 % hObject    handle to seteuleraxis (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Set_last_cube(handles.Cube);
+Global_Cube(handles.Cube);
 
 Euler_Angle = str2double(get(handles.Euler_Angle,'String'));
 Euler_AxisX = str2double(get(handles.Euler_AxisX,'String'));
@@ -914,10 +917,10 @@ Rot_Mat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
 
     %---------------------------
     %Write quaternions
-    if(isempty(GetLastQuaternion()))
+    if(isempty(GetGlobal_Quat()))
         Quat0 = [0;0;0;0];
     else
-        Quat0 = GetLastQuaternion();
+        Quat0 = GetGlobal_Quat();
     end
     set(handles.Quat0_0,'String',Quat0(1,1));
     set(handles.Quat0_1,'String',Quat0(2,1));
@@ -930,7 +933,7 @@ Rot_Mat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
     set(handles.Quat1_2,'String',Quat1(3,1));
     set(handles.Quat1_3,'String',Quat1(4,1));
 
-    Set_last_quaternion(Quat1);
+    Global_Quat(Quat1);
     
     Quat_Product = quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
@@ -956,7 +959,7 @@ Rot_Mat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
 
     
     %Write r_mat 
-    Set_rotation_matrix(Rot_Mat);
+    Global_RotMat(Rot_Mat);
 
     set(handles.RotMat_Pos1_1,'String',Rot_Mat(1,1));
     set(handles.RotMat_Pos1_2,'String',Rot_Mat(1,2));
@@ -973,16 +976,16 @@ Rot_Mat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
     
     
     
-    last_cube = GetLastCube();
+    last_cube =GetGlobal_Cube();
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
-    Set_last_cube(handles.Cube);
+    Global_Cube(handles.Cube);
 
 % --- Executes on button press in setquaternions.
 function setquaternions_Callback(hObject, eventdata, handles)
 % hObject    handle to setquaternions (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Set_last_cube(handles.Cube);
+Global_Cube(handles.Cube);
 
 Quat1(1,1) = str2double(get(handles.Quat1_0,'String'));
 Quat1(2,1) = str2double(get(handles.Quat1_1,'String'));
@@ -1008,13 +1011,13 @@ Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
     set(handles.Yaw,'String',Yaw);    
 
     %Write quaternions
-    if(isempty(GetLastQuaternion()))
+    if(isempty(GetGlobal_Quat()))
         Quat0 = [0;0;0;0];
     else
-         Quat0 = GetLastQuaternion();
+         Quat0 = GetGlobal_Quat();
     end
      Quat1 = EulerAngle_to_Quat(Roll,Pitch,Yaw);
-    Set_last_quaternion(Quat1);
+    Global_Quat(Quat1);
     Quat_Product = quatmult(Quat0,Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
     set(handles.Quat_Product_1,'String',Quat_Product(2,1));
@@ -1040,7 +1043,7 @@ Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
 
     
     %Write r_mat 
-    Set_rotation_matrix(Rot_Mat);
+    Global_RotMat(Rot_Mat);
 
     set(handles.RotMat_Pos1_1,'String',Rot_Mat(1,1));
     set(handles.RotMat_Pos1_2,'String',Rot_Mat(1,2));
@@ -1054,9 +1057,9 @@ Rot_Mat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
     set(handles.RotMat_Pos3_2,'String',Rot_Mat(3,2));
     set(handles.RotMat_Pos3_3,'String',Rot_Mat(3,3));
     
-    last_cube = GetLastCube();
+    last_cube =GetGlobal_Cube();
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
-    Set_last_cube(handles.Cube);
+    Global_Cube(handles.Cube);
 
 
 % --- Executes on button press in setrotvec.
@@ -1064,7 +1067,7 @@ function setrotvec_Callback(hObject, eventdata, handles)
 % hObject    handle to setrotvec (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Set_last_cube(handles.Cube);
+Global_Cube(handles.Cube);
 
 Rotation_Vector(1,1) = str2double(get(handles.X,'String'));
 Rotation_Vector(2,1) = str2double(get(handles.Y,'String'));
@@ -1084,10 +1087,10 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
     set(handles.Yaw,'String',Yaw); 
 
     %Write quaternions
-    if(isempty(GetLastQuaternion()))
+    if(isempty(GetGlobal_Quat()))
         Quat0 = [0;0;0;0];
     else
-        Quat0 = GetLastQuaternion();
+        Quat0 = GetGlobal_Quat();
     end
     set(handles.Quat0_0,'String', Quat0(1,1));
     set(handles.Quat0_1,'String', Quat0(2,1));
@@ -1101,7 +1104,7 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
     set(handles.Quat1_3,'String', Quat1(4,1));
 
 
-    Set_last_quaternion(Quat1);
+    Global_Quat(Quat1);
     
     Quat_Product = quatmult( Quat0, Quat1);
     set(handles.Quat_Product_0,'String',Quat_Product(1,1));
@@ -1127,7 +1130,7 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
 
     
     %Write r_mat 
-    Set_rotation_matrix(Rot_Mat);
+    Global_RotMat(Rot_Mat);
 
     set(handles.RotMat_Pos1_1,'String',Rot_Mat(1,1));
     set(handles.RotMat_Pos1_2,'String',Rot_Mat(1,2));
@@ -1141,7 +1144,7 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
     set(handles.RotMat_Pos3_2,'String',Rot_Mat(3,2));
     set(handles.RotMat_Pos3_3,'String',Rot_Mat(3,3));
     
-    last_cube = GetLastCube();
+    last_cube =GetGlobal_Cube();
     handles.Cube = RedrawCube(Rot_Mat,last_cube);
-    Set_last_cube(handles.Cube);
+    Global_Cube(handles.Cube);
 
