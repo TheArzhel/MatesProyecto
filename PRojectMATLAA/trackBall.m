@@ -1070,11 +1070,8 @@ Rotation_Vector(1,1) = str2double(get(handles.X,'String'));
 Rotation_Vector(2,1) = str2double(get(handles.Y,'String'));
 Rotation_Vector(3,1) = str2double(get(handles.Z,'String'));
 
-if(norm(Rotation_Vector)==1)
-    Angle = 0;
-else
-    Angle = norm(Rotation_Vector);
-end
+Angle = norm(Rotation_Vector);
+
 Axis = Rotation_Vector/norm(Rotation_Vector);
 
 Rot_Mat=axisangle2matrix(Axis,Angle);
