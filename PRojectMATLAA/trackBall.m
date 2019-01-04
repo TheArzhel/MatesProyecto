@@ -774,7 +774,7 @@ Rot_Mat=EulerAnglesToRotMat(Pitch,Roll,Yaw);
     set(handles.Quat0_2,'String',Quat0(3,1));
     set(handles.Quat0_3,'String',Quat0(4,1));
 
-    Quat1 = TwoVec_To_Quat(Init_Vector, RotVec(3,xmouse,ymouse));
+    Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
     set(handles.Quat1_0,'String',Quat1(1,1));
     set(handles.Quat1_1,'String',Quat1(2,1));
     set(handles.Quat1_2,'String',Quat1(3,1));
@@ -926,7 +926,7 @@ Rot_Mat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
     set(handles.Quat0_2,'String',Quat0(3,1));
     set(handles.Quat0_3,'String',Quat0(4,1));
 
-    Quat1 = TwoVec_To_Quat(Init_Vector, RotVec(3,xmouse,ymouse));
+   Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
     set(handles.Quat1_0,'String',Quat1(1,1));
     set(handles.Quat1_1,'String',Quat1(2,1));
     set(handles.Quat1_2,'String',Quat1(3,1));
@@ -1100,7 +1100,7 @@ Rot_Mat=axisangle2matrix(Axis,Angle);
     set(handles.Quat0_2,'String',Quat0(3,1));
     set(handles.Quat0_3,'String',Quat0(4,1));
 
-    Quat1 = TwoVec_To_Quat(Init_Vector, RotVec(3,xmouse,ymouse));
+    Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
     set(handles.Quat1_0,'String',Quat1(1,1));
     set(handles.Quat1_1,'String',Quat1(2,1));
     set(handles.Quat1_2,'String',Quat1(3,1));
