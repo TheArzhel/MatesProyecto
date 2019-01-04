@@ -129,29 +129,29 @@ RotMat=axisangle2matrix(Axis,Angle);
 
       %Writing quaternions
      if(isempty(GetLastQuaternion()))
-        First_Quat = [0;0;0;0];
+        Quat0 = [0;0;0;0];
     else
-         First_Quat = GetLastQuaternion();
+         Quat0 = GetLastQuaternion();
     end
-    set(handles.First_QuatPos_1,'String', First_Quat(1,1));
-    set(handles.First_QuatPos_2,'String', First_Quat(2,1));
-    set(handles.First_QuatPos_3,'String', First_Quat(3,1));
-    set(handles.First_QuatPos_4,'String', First_Quat(4,1));
+    set(handles.Quat0_0,'String', Quat0(1,1));
+    set(handles.Quat0_1,'String', Quat0(2,1));
+    set(handles.Quat0_2,'String', Quat0(3,1));
+    set(handles.Quat0_3,'String', Quat0(4,1));
     
     Quat2 = TwoVec_To_Quat(Init_Vec,RotVec(3,xmouse,ymouse));
-    set(handles.Quat2Pos_1,'String',Quat2(1,1));
-    set(handles.Quat2Pos_2,'String',Quat2(2,1));
-    set(handles.Quat2Pos_3,'String',Quat2(3,1));
-    set(handles.Quat2Pos_4,'String',Quat2(4,1));
+    set(handles.Quat2_0,'String',Quat2(1,1));
+    set(handles.Quat2_1,'String',Quat2(2,1));
+    set(handles.Quat2_2,'String',Quat2(3,1));
+    set(handles.Quat2_3,'String',Quat2(4,1));
 
       Set_last_quaternion(Quat2);
     
     
-    Quat_Product=quatmult(First_Quat,Quat2);
-    set(handles.Quat_Product_1,'String',Quat_Product(1,1));
-    set(handles.Quat_Product_2,'String',Quat_Product(2,1));
-    set(handles.Quat_Product_3,'String',Quat_Product(3,1));
-    set(handles.Quat_Product_4,'String',Quat_Product(4,1));
+    Quat_Product=quatmult(Quat0,Quat2);
+    set(handles.Quat_Product_0,'String',Quat_Product(1,1));
+    set(handles.Quat_Product_1,'String',Quat_Product(2,1));
+    set(handles.Quat_Product_2,'String',Quat_Product(3,1));
+    set(handles.Quat_Product_3,'String',Quat_Product(4,1));
       
     
      %Write Euler axis & angle
@@ -176,7 +176,7 @@ RotMat=axisangle2matrix(Axis,Angle);
     set(handles.z,'String',Rot_Vec(3));
 
      
-    %Write r_mat 
+    %Write RotMat 
     Set_rotation_matrix(RotMat);
     
     set(handles.RotMat_Pos1_1,'String',RotMat(1,1));
@@ -293,13 +293,13 @@ function Set_rotation_matrix(RotMat)
 global rotation_mat;
 rotation_mat = RotMat;
 
-function Set_last_quaternion(Quat1)
+function Set_last_quaternion(Quat)
 global last_quat;
-last_quat = Quat1;
+last_quat = Quat;
 
-function Set_last_cube(Cube1)
+function Set_last_cube(Cube)
 global last_cube;
-last_cube = Cube1;
+last_cube = Cube;
 
 function vec = Get_init_vec();
 global initial_vector;
@@ -319,7 +319,7 @@ Cube = last_cube;
 
 %---------------------------------------------------------------------------
 
-function q0_0_Callback(hObject, eventdata, handles)
+function Quat0_0_Callback(hObject, eventdata, handles)
 % hObject    handle to q0_0 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -329,7 +329,7 @@ function q0_0_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q0_0_CreateFcn(hObject, eventdata, handles)
+function Quat0_0_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q0_0 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -342,7 +342,7 @@ end
 
 
 
-function q0_1_Callback(hObject, eventdata, handles)
+function Quat0_1_Callback(hObject, eventdata, handles)
 % hObject    handle to q0_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -352,7 +352,7 @@ function q0_1_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q0_1_CreateFcn(hObject, eventdata, handles)
+function Quat0_1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q0_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -365,7 +365,7 @@ end
 
 
 
-function q0_2_Callback(hObject, eventdata, handles)
+function Quat0_2_Callback(hObject, eventdata, handles)
 % hObject    handle to q0_2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -375,7 +375,7 @@ function q0_2_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q0_2_CreateFcn(hObject, eventdata, handles)
+function Quat0_2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q0_2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -388,7 +388,7 @@ end
 
 
 
-function q0_3_Callback(hObject, eventdata, handles)
+function Quat0_3_Callback(hObject, eventdata, handles)
 % hObject    handle to q0_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -398,7 +398,7 @@ function q0_3_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q0_3_CreateFcn(hObject, eventdata, handles)
+function Quat0_3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q0_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -411,7 +411,7 @@ end
 
 
 
-function q1_0_Callback(hObject, eventdata, handles)
+function Quat1_0_Callback(hObject, eventdata, handles)
 % hObject    handle to q1_0 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -421,7 +421,7 @@ function q1_0_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q1_0_CreateFcn(hObject, eventdata, handles)
+function Quat1_0_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q1_0 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -434,7 +434,7 @@ end
 
 
 
-function q1_1_Callback(hObject, eventdata, handles)
+function Quat1_1_Callback(hObject, eventdata, handles)
 % hObject    handle to q1_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -444,7 +444,7 @@ function q1_1_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q1_1_CreateFcn(hObject, eventdata, handles)
+function Quat1_1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q1_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -457,7 +457,7 @@ end
 
 
 
-function q1_2_Callback(hObject, eventdata, handles)
+function Quat1_2_Callback(hObject, eventdata, handles)
 % hObject    handle to q1_2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -467,7 +467,7 @@ function q1_2_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q1_2_CreateFcn(hObject, eventdata, handles)
+function Quat1_2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q1_2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -480,7 +480,7 @@ end
 
 
 
-function q1_3_Callback(hObject, eventdata, handles)
+function Quat1_3_Callback(hObject, eventdata, handles)
 % hObject    handle to q1_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -490,7 +490,7 @@ function q1_3_Callback(hObject, eventdata, handles)
 
 
 % --- Executes during object creation, after setting all properties.
-function q1_3_CreateFcn(hObject, eventdata, handles)
+function Quat1_3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to q1_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -503,7 +503,7 @@ end
 
 
 
-function qk_0_Callback(hObject, eventdata, handles)
+function QuatProduct_0_Callback(hObject, eventdata, handles)
 % hObject    handle to qk_0 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -511,7 +511,7 @@ function qk_0_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of qk_0 as a double
 
 % --- Executes during object creation, after setting all properties.
-function qk_0_CreateFcn(hObject, eventdata, handles)
+function QuatProduct_0_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to qk_0 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -521,7 +521,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function qk_1_Callback(hObject, eventdata, handles)
+function QuatProduct_1_Callback(hObject, eventdata, handles)
 % hObject    handle to qk_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -529,7 +529,7 @@ function qk_1_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of qk_1 as a double
 
 % --- Executes during object creation, after setting all properties.
-function qk_1_CreateFcn(hObject, eventdata, handles)
+function QuatProduct_1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to qk_1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -539,7 +539,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function qk_2_Callback(hObject, eventdata, handles)
+function QuatProduct_2_Callback(hObject, eventdata, handles)
 % hObject    handle to qk_2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -547,7 +547,7 @@ function qk_2_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of qk_2 as a double
 
 % --- Executes during object creation, after setting all properties.
-function qk_2_CreateFcn(hObject, eventdata, handles)
+function QuatProduct_2_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to qk_2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -557,7 +557,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function qk_3_Callback(hObject, eventdata, handles)
+function QuatProduct_3_Callback(hObject, eventdata, handles)
 % hObject    handle to qk_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -565,7 +565,7 @@ function qk_3_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of qk_3 as a double
 
 % --- Executes during object creation, after setting all properties.
-function qk_3_CreateFcn(hObject, eventdata, handles)
+function QuatProduct_3_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to qk_3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -575,7 +575,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function e_axis_x_Callback(hObject, eventdata, handles)
+function Euler_Axisx_Callback(hObject, eventdata, handles)
 % hObject    handle to e_axis_x (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -583,7 +583,7 @@ function e_axis_x_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of e_axis_x as a double
 
 % --- Executes during object creation, after setting all properties.
-function e_axis_x_CreateFcn(hObject, eventdata, handles)
+function Euler_Axisx_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to e_axis_x (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -593,7 +593,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function e_axis_y_Callback(hObject, eventdata, handles)
+function Euler_Axisy_Callback(hObject, eventdata, handles)
 % hObject    handle to e_axis_y (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -601,7 +601,7 @@ function e_axis_y_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of e_axis_y as a double
 
 % --- Executes during object creation, after setting all properties.
-function e_axis_y_CreateFcn(hObject, eventdata, handles)
+function Euler_Axisy_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to e_axis_y (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -611,7 +611,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function e_axis_z_Callback(hObject, eventdata, handles)
+function Euler_Axisz_Callback(hObject, eventdata, handles)
 % hObject    handle to e_axis_z (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -620,7 +620,7 @@ function e_axis_z_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of e_axis_z as a double
 
 % --- Executes during object creation, after setting all properties.
-function e_axis_z_CreateFcn(hObject, eventdata, handles)
+function Euler_Axisz_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to e_axis_z (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -631,7 +631,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-function e_angle_Callback(hObject, eventdata, handles)
+function Euler_Angle_Callback(hObject, eventdata, handles)
 % hObject    handle to e_angle (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -639,7 +639,7 @@ function e_angle_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of e_angle as a double
 
 % --- Executes during object creation, after setting all properties.
-function e_angle_CreateFcn(hObject, eventdata, handles)
+function Euler_Angle_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to e_angle (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
@@ -765,35 +765,39 @@ function pusheulerangles_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 Set_last_cube(handles.Cube);
 
-Pitch = str2double(get(handles.phi,'String'));
-Roll = str2double(get(handles.theta,'String'));
-Yaw = str2double(get(handles.psi,'String'));
+Pitch = str2double(get(handles.Pitch,'String'));
+Roll = str2double(get(handles.Roll,'String'));
+Yaw = str2double(get(handles.Yaw,'String'));
 
 RotMat=EulerAnglesToRotMat(Pitch,Roll,Yaw);
 
 %---------------------------------------------------------------------------------
-
-
-   %Write Euler Angles
-    [Pitch,Roll,Yaw]=rotM2eAngles(RotMat);
-    set(handles.Pitch,'String',Pitch);
-    set(handles.Roll,'String',Roll);
-    set(handles.Yaw,'String',Yaw);  
-    
     
     %Write quaternions
-    if(isempty(GetLastQuaternion()))
-        First_Quat = [0;0;0;0];
+     if(isempty(GetLastQuaternion()))
+        Quat0 = [0;0;0;0];
     else
-         First_Quat = GetLastQuaternion();
+        Quat0 = GetLastQuaternion();
     end
-    Quat1 = eul2quat(Pitch, Roll,Yaw);
+    set(handles.Quat_0,'String',Quat0(1,1));
+    set(handles.Quat_1,'String',Quat0(2,1));
+    set(handles.Quat_2,'String',Quat0(3,1));
+    set(handles.Quat_3,'String',Quat0(4,1));
+
+    Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
+    set(handles.Quat1_0,'String',Quat1(1,1));
+    set(handles.Quat1_1,'String',Quat1(2,1));
+    set(handles.Quat1_2,'String',Quat1(3,1));
+    set(handles.Quat1_3,'String',Quat1(4,1));
+
     Set_last_quaternion(Quat1);
-    Quat_Product = quatmult( First_Quat, Quat1);
-    set(handles.Quat_Product_1,'String',Quat_Product(1,1));
-    set(handles.Quat_Product_2,'String',Quat_Product(2,1));
-    set(handles.Quat_Product_3,'String',Quat_Product(3,1));
-    set(handles.Quat_Product_4,'String',Quat_Product(4,1));
+    
+    Quat_Product = quatmult(Quat0,Quat1);
+    set(handles.Quat_Product_0,'String',Quat_Product(1,1));
+    set(handles.Quat_Product_1,'String',Quat_Product(2,1));
+    set(handles.Quat_Product_2,'String',Quat_Product(3,1));
+    set(handles.Quat_Product_3,'String',Quat_Product(4,1));
+    
     
      %Write Euler axis & angle
     [Euler_Axis,Euler_Angle]=RotMatToEulerAngles(RotMat);
@@ -804,12 +808,213 @@ RotMat=EulerAnglesToRotMat(Pitch,Roll,Yaw);
     
     %Write rotation vector
     [Euler_Axis,Euler_Angle]=rotMat2Eaa(RotMat);
-    Rot_Vec = Obt_RotVec(Euler_Axis,Euler_Angle);
+    Rot_Vec = Obt_RotVec(Euler_Axis,Euler_Angle);%Check
     set(handles.x,'String',Rot_Vec(1));
     set(handles.y,'String',Rot_Vec(2));
     set(handles.z,'String',Rot_Vec(3));
     
      %Write RotMat 
+    Set_rotation_matrix(RotMat);
+    
+    set(handles.RotMat_Pos1_1,'String',RotMat(1,1));
+    set(handles.RotMat_Pos1_2,'String',RotMat(1,2));
+    set(handles.RotMat_Pos1_3,'String',RotMat(1,3));
+
+    set(handles.RotMat_Pos2_1,'String',RotMat(2,1));
+    set(handles.RotMat_Pos2_2,'String',RotMat(2,2));
+    set(handles.RotMat_Pos2_3,'String',RotMat(2,3));
+
+    set(handles.RotMat_Pos3_1,'String',RotMat(3,1));
+    set(handles.RotMat_Pos3_2,'String',RotMat(3,2));
+    set(handles.RotMat_Pos3_3,'String',RotMat(3,3));
+    
+    last_cube = GetLastCube();
+    handles.Cube = RedrawCube(RotMat,last_cube);
+    Set_last_cube(handles.Cube);
+    
+    % --- Executes on button press in reset.
+function reset_Callback(hObject, eventdata, handles)
+% hObject    handle to reset (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.Cube = RedrawCube(eye(3,3) ,handles.Cube); 
+set(handles.Quat0_0,'String',0);
+set(handles.Quat0_1,'String',0);
+set(handles.Quat0_2,'String',0);
+set(handles.Quat0_3,'String',0);
+
+set(handles.Quat1_0,'String',0);
+set(handles.Quat1_1,'String',0);
+set(handles.Quat1_2,'String',0);
+set(handles.Quat1_3,'String',0);
+
+Set_last_quaternion([0;0;0;0]);
+
+set(handles.Quat_Product_0,'String',0);
+set(handles.Quat_Product_1,'String',0);
+set(handles.Quat_Product_2,'String',0);
+set(handles.Quat_Product_3,'String',0);
+
+set(handles.Euler_AxisX,'String',0);
+set(handles.Euler_AxisY,'String',0);
+set(handles.Euler_AxisZ,'String',0);
+set(handles.Euler_Angle,'String',0);
+
+set(handles.Pitch,'String',0);
+set(handles.Roll,'String',0);
+set(handles.Yaw,'String',0);
+
+set(handles.x,'String',0);
+set(handles.y,'String',0);
+set(handles.z,'String',0);
+
+set(handles.RotMat_Pos1_1,'String',1);
+set(handles.RotMat_Pos1_2,'String',0);
+set(handles.RotMat_Pos1_3,'String',0);
+
+set(handles.RotMat_Pos2_1,'String',0);
+set(handles.RotMat_Pos2_2,'String',1);
+set(handles.RotMat_Pos2_3,'String',0);
+
+set(handles.RotMat_Pos3_1,'String',0);
+set(handles.RotMat_Pos3_2,'String',0);
+set(handles.RotMat_Pos3_3,'String',1);
+    
+    % --- Executes during object creation, after setting all properties.
+function axes1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to axes1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+% Hint: place code in OpeningFcn to populate axes1
+
+% --- Executes on mouse press over axes background.
+function axes1_ButtonDownFcn(hObject, eventdata, handles)
+% hObject    handle to axes1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    
+% --- Executes on button press in pusheuleraxis.
+function pusheuleraxis_Callback(hObject, eventdata, handles)
+% hObject    handle to pusheuleraxis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+Set_last_cube(handles.Cube);
+
+Euler_Angle = str2double(get(handles.Euler_Angle,'String'));
+Euler_AxisX = str2double(get(handles.Euler_AxisX,'String'));
+Euler_AxisY = str2double(get(handles.Euler_AxisY,'String'));
+Euler_AxisZ = str2double(get(handles.Euler_AxisZ,'String'));
+
+RotMat=axisangle2matrix([Euler_AxisX;Euler_AxisY;Euler_AxisZ],Euler_Angle);
+
+ %Write Euler Angles
+    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
+    set(handles.Pitch,'String',Pitch);
+    set(handles.Roll,'String',Roll);
+    set(handles.Yaw,'String',Yaw);   
+
+  %Write quaternions
+    if(isempty(GetLastQuaternion()))
+        Quat0 = [0;0;0;0];
+    else
+        Quat0 = GetLastQuaternion();
+    end
+    set(handles.Quat0_0,'String', Quat0(1,1));
+    set(handles.Quat0_1,'String', Quat0(2,1));
+    set(handles.Quat0_2,'String', Quat0(3,1));
+    set(handles.Quat0_3,'String', Quat0(4,1));
+
+    Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
+    set(handles.Quat1_0,'String', Quat1(1,1));
+    set(handles.Quat1_1,'String', Quat1(2,1));
+    set(handles.Quat1_2,'String', Quat1(3,1));
+    set(handles.Quat1_3,'String', Quat1(4,1));
+
+    Set_last_quaternion(Quat1);
+    
+   Quat_Product = quatmult( Quat0, Quat1);
+    set(handles.Quat_Product_0,'String',Quat_Product(1,1));
+    set(handles.Quat_Product_1,'String',Quat_Product(2,1));
+    set(handles.Quat_Product_2,'String',Quat_Product(3,1));
+    set(handles.Quat_Product_3,'String',Quat_Product(4,1));
+
+    %Write rotation vector
+    [Euler_Axis,Euler_Angle]=RotMatToEulerAxis_Angle(RotMat);
+     Rot_Vec = Obt_RotVec(Euler_Axis,Euler_Angle);
+    set(handles.x,'String',Rot_Vec(1));
+    set(handles.y,'String',Rot_Vec(2));
+    set(handles.z,'String',Rot_Vec(3));
+    
+     %Write r_mat 
+    Set_rotation_matrix(RotMat);
+    
+    set(handles.RotMat_Pos1_1,'String',RotMat(1,1));
+    set(handles.RotMat_Pos1_2,'String',RotMat(1,2));
+    set(handles.RotMat_Pos1_3,'String',RotMat(1,3));
+
+    set(handles.RotMat_Pos2_1,'String',RotMat(2,1));
+    set(handles.RotMat_Pos2_2,'String',RotMat(2,2));
+    set(handles.RotMat_Pos2_3,'String',RotMat(2,3));
+
+    set(handles.RotMat_Pos3_1,'String',RotMat(3,1));
+    set(handles.RotMat_Pos3_2,'String',RotMat(3,2));
+    set(handles.RotMat_Pos3_3,'String',RotMat(3,3));
+    
+    last_cube = GetLastCube();
+    handles.Cube = RedrawCube(RotMat,last_cube);
+    Set_last_cube(handles.Cube);
+
+function pushquaternions_Callback(hObject, eventdata, handles)
+% hObject    handle to pushquaternions (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+Set_last_cube(handles.Cube);
+
+Quat1(1,1) = str2double(get(handles.Quat1_0,'String'));
+Quat1(2,1) = str2double(get(handles.Quat1_1,'String'));
+Quat1(3,1) = str2double(get(handles.Quat1_2,'String'));
+Quat1(4,1) = str2double(get(handles.Quat1_3,'String'));
+
+[Pitch_AUX,Roll_AUX,Yaw_AUX]=Quat_To_EulerAngles(Quat1);
+RotMat=EulerAnglesToRotMat(Pitch_AUX,Roll_AUX,Yaw_AUX);
+%---------------------------Do All Again------------------------
+   
+
+    %Write Euler Angles
+    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
+    set(handles.Pitch,'String',Pitch);
+    set(handles.Roll,'String',Roll);
+    set(handles.Yaw,'String',Yaw);    
+
+    %Write quaternions
+    if(isempty(GetLastQuaternion()))
+        Quat0 = [0;0;0;0];
+    else
+         Quat0 = GetLastQuaternion();
+    end
+     Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
+    Set_last_quaternion( Quat1);
+    Quat_Product = quatmult( Quat0, Quat1);
+    set(handles.Quat_Product_0,'String',Quat_Product(1,1));
+    set(handles.Quat_Product_1,'String',Quat_Product(2,1));
+    set(handles.Quat_Product_2,'String',Quat_Product(3,1));
+    set(handles.Quat_Product_3,'String',Quat_Product(4,1));
+    
+    %Write Euler axis & angle
+    [Euler_Axis,Euler_Angle]=RotMatToEulerAngles(RotMat);
+    set(handles.Euler_AxisX,'String',Euler_Axis(1,1));
+    set(handles.Euler_AxisY,'String',Euler_Axis(2,1));
+    set(handles.Euler_AxisZ,'String',Euler_Axis(3,1));
+    set(handles.Euler_Angle,'String',Euler_Angle);
+    
+    %Write rotation vector
+    [Euler_Axis,Euler_Angle]=RotMatToEulerAxis_Angle(RotMat);
+     Rot_Vec = Obt_RotVec(Euler_Axis,Euler_Angle);
+    set(handles.x,'String',Rot_Vec(1));
+    set(handles.y,'String',Rot_Vec(2));
+    set(handles.z,'String',Rot_Vec(3));
+    
+    %Write r_mat 
     Set_rotation_matrix(RotMat);
     
     set(handles.RotMat_Pos1_1,'String',RotMat(1,1));
@@ -847,41 +1052,39 @@ else
 end
 Axis = Rotation_Vector/norm(Rotation_Vector);
 
-RotMat=Eaa2rotMat(Axis,Angle);
+RotMat=axisangle2matrix(Axis,Angle);
 
    %Write Euler Angles
-    [Pitch,Roll,Yaw]=rotM2eAngles(RotMat);
+    [Pitch,Roll,Yaw]=RotMatToEulerAngles(RotMat);
     set(handles.Pitch,'String',Pitch);
     set(handles.Roll,'String',Roll);
     set(handles.Yaw,'String',Yaw);    
 
-%Write quaternions
+ %Write quaternions
     if(isempty(GetLastQuaternion()))
-          First_Quat = [0;0;0;0];
+        Quat0 = [0;0;0;0];
     else
-          First_Quat = GetLastQuaternion();
+        Quat0 = GetLastQuaternion();
     end
-    set(handles.First_Quat_1,'String',First_Quat(1,1));
-    set(handles.First_Quat_2,'String',First_Quat(2,1));
-    set(handles.First_Quat_3,'String',First_Quat(3,1));
-    set(handles.First_Quat_4,'String',First_Quat(4,1));
+    set(handles.Quat0_0,'String', Quat0(1,1));
+    set(handles.Quat0_1,'String', Quat0(2,1));
+    set(handles.Quat0_2,'String', Quat0(3,1));
+    set(handles.Quat0_3,'String', Quat0(4,1));
 
     Quat1 = EulerAngle_to_Quat(Pitch,Roll,Yaw);
-    set(handles.Quat1_1,'String',Quat1(1,1));
-    set(handles.Quat1_2,'String',Quat1(2,1));
-    set(handles.Quat1_3,'String',Quat1(3,1));
-    set(handles.Quat1_4,'String',Quat1(4,1));
+    set(handles.Quat1_0,'String', Quat1(1,1));
+    set(handles.Quat1_1,'String', Quat1(2,1));
+    set(handles.Quat1_2,'String', Quat1(3,1));
+    set(handles.Quat1_3,'String', Quat1(4,1));
 
     Set_last_quaternion(Quat1);
     
+   Quat_Product = quatmult( Quat0, Quat1);
+    set(handles.Quat_Product_0,'String',Quat_Product(1,1));
+    set(handles.Quat_Product_1,'String',Quat_Product(2,1));
+    set(handles.Quat_Product_2,'String',Quat_Product(3,1));
+    set(handles.Quat_Product_3,'String',Quat_Product(4,1));
     
-    
-    
-    Quat_Product = quatmult(q0,q1);
-    set(handles.Quat_Product_1,'String',Quat_Product(1,1));
-    set(handles.Quat_Product_2,'String',Quat_Product(2,1));
-    set(handles.Quat_Product_3,'String',Quat_Product(3,1));
-    set(handles.Quat_Product_4,'String',Quat_Product(4,1));
     
     %Write Euler axis & angle
     [Euler_Axis,Euler_Angle]=RotMatToEulerAngles(RotMat);
@@ -890,8 +1093,8 @@ RotMat=Eaa2rotMat(Axis,Angle);
     set(handles.Euler_AxisZ,'String',Euler_Axis(3,1));
     set(handles.Euler_Angle,'String',Euler_Angle);
     
-    %Write RotMat 
     
+    %Write RotMat 
     Set_rotation_matrix(RotMat);
     
     set(handles.RotMat_Pos1_1,'String',RotMat(1,1));
@@ -905,7 +1108,6 @@ RotMat=Eaa2rotMat(Axis,Angle);
     set(handles.RotMat_Pos3_1,'String',RotMat(3,1));
     set(handles.RotMat_Pos3_2,'String',RotMat(3,2));
     set(handles.RotMat_Pos3_3,'String',RotMat(3,3));
-    
     
     last_cube = GetLastCube();
     handles.Cube = RedrawCube(RotMat_Pos,last_cube);
