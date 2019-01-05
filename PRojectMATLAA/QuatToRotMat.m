@@ -30,7 +30,7 @@ g=2*Quat(2)*Quat(4)-2*Quat(1)*Quat(3);
 
 h=2*Quat(3)*Quat(4)+2*Quat(1)*Quat(2);
 
-i=Quat(1)^2-Quat(2)^2-Quat(3)^2+Quat(4)*2;
+i=Quat(1)^2-Quat(2)^2-Quat(3)^2+Quat(4)^2;
 
 disp("The RotMatrix is:")
 
